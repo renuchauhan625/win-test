@@ -3,7 +3,7 @@ name: Deploy to ECR
 on:
   workflow_dispatch:
   push:
-    branches: [testing]
+    branches: [testing2]
 
 jobs:
   build:
@@ -38,11 +38,11 @@ jobs:
           IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         run: |
           docker build -t sdk:bmo .
-          docker build -t 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:BMO.SDK-test .
-          docker push 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:BMO.SDK-test
+          docker build -t 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:BMO.SDK-test2 .
+          docker push 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:BMO.SDK-test2
 
       - name: Tag the Docker Image Locally
-        run: docker tag 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:BMO.SDK-test sdk:bmo
+        run: docker tag 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:BMO.SDK-test2 sdk:bmo
 
       - name: Create Local Docker Image
         run: docker build -t sdk1:bmo .
