@@ -3,12 +3,12 @@ name: Deploy to ECR
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [testing]
 
 jobs:
   build:
     name: Build and Push Image
-    runs-on: windows-2022
+    runs-on: renu-hosted
 
     steps:
       - name: Check out code
@@ -38,11 +38,11 @@ jobs:
           IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         run: |
           docker build -t sdk:bmo .
-          docker build -t 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:BMO.SDK .
-          docker push 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:BMO.SDK
+          docker build -t 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:BMO.SDK-test .
+          docker push 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:BMO.SDK-test
 
       - name: Tag the Docker Image Locally
-        run: docker tag 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:BMO.SDK sdk:bmo
+        run: docker tag 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:BMO.SDK-test sdk:bmo
 
       - name: Create Local Docker Image
         run: docker build -t sdk1:bmo .
