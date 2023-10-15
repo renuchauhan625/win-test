@@ -52,6 +52,4 @@ jobs:
 
       - name: List Local Docker Images
         run: docker images
-      
-      - name: List Local Docker Images
-        run: docker imagess
+   
