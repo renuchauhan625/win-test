@@ -3,7 +3,7 @@ name: Deploy to ECR
 on:
   workflow_dispatch:
   push:
-    branches: [testingbranch]
+    branches: [main]
 
 jobs:
   build:
@@ -44,5 +44,8 @@ jobs:
       - name: Run Docker Container
         run: docker run -d --name sdkbmo1 sdk1:bmo
 
+      - name: List Local Docker Images
+        run: docker images
+      
       - name: List Local Docker Images
         run: docker images
