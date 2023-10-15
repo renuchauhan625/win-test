@@ -29,14 +29,14 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: winows-images
-          IMAGE_TAG: winTest1Image
+          IMAGE_TAG: winTest2Image
         run: |
           docker build -t sdk:bmo .
-          docker tag sdk:bmo 975148384510.dkr.ecr.ca-central-1.amazonaws.com/windows-images:winTest1Image
-          docker push 975148384510.dkr.ecr.ca-central-1.amazonaws.com/windows-images:winTest1Image
+          docker tag sdk:bmo 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:winTest2Image
+          docker push 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:winTest2Image
 
       - name: Tag the Docker Image Locally
-        run: docker tag 975148384510.dkr.ecr.ca-central-1.amazonaws.com/windows-images:winTest1Image sdk:bmo
+        run: docker tag 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:winTest2Image sdk:bmo
 
       - name: Create Local Docker Image
         run: docker build -t sdk1:bmo .
