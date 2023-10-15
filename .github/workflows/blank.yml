@@ -38,7 +38,7 @@ jobs:
           IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         run: |
           docker build -t sdk:bmo .
-          docker tag sdk:bmo ${{ ECR_REGISTRY }}/${{ ECR_REPOSITORY:base_img }}
+          docker tag sdk:bmo ${{ ECR_REGISTRY }}/${{ ECR_REPOSITORY }}:base_img
           docker push 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:base_img
 
       - name: Tag the Docker Image Locally
