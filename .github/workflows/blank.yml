@@ -38,11 +38,11 @@ jobs:
           IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         run: |
           docker build -t sdk:bmo .
-          docker build -t 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:$IMAGE_TAG .
-          docker push 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:$IMAGE_TAG
+          docker build -t 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:BMO.SDK .
+          docker push 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:BMO.SDK
 
       - name: Tag the Docker Image Locally
-        run: docker tag 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:base_img sdk:bmo
+        run: docker tag 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:BMO.SDK sdk:bmo
 
       - name: Create Local Docker Image
         run: docker build -t sdk1:bmo .
