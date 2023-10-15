@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     name: Build and Push Image
-    runs-on: renu-hosted
+    runs-on: app-hosted
 
     steps:
       - name: Check out code
