@@ -25,18 +25,24 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
+      - name: Automatic Tagging of Releases
+        id: increment-git-tag
+        run: |
+          bash ./build/git_update.sh -v major
+      
+
       - name: Build, tag, and push image to Amazon ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: winows-images
-          IMAGE_TAG: winTest2Image
+          IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         run: |
           docker build -t sdk:bmo .
-          docker tag sdk:bmo 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:winTest2Image
-          docker push 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:winTest2Image
+          docker tag sdk:bmo 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:$IMAGE_TAG
+          docker push 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:$IMAGE_TAG
 
       - name: Tag the Docker Image Locally
-        run: docker tag 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:winTest2Image sdk:bmo
+        run: docker tag 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:$IMAGE_TAG sdk:bmo
 
       - name: Create Local Docker Image
         run: docker build -t sdk1:bmo .
