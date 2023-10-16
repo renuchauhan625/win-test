@@ -45,10 +45,10 @@ jobs:
         run: docker tag 975148384510.dkr.ecr.ca-central-1.amazonaws.com/win-app-container:latest sdk1:bmo
 
       - name: Create Local Docker Image
-        run: docker build -t sdk2:bmo .
+        run: docker build -t sdk1:bmo .
 
       - name: Run Docker Container
-        run: docker run -d --name sdkbmo1 sdk2:bmo
+        run: docker run -d --name sdkbmo1 sdk1:bmo
 
       - name: List Local Docker Images
         run: docker images
