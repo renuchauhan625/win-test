@@ -16,8 +16,8 @@ jobs:
       
       - name: clone repo
         run:
-          git clone https://github.com/aws-samples/aws-ecs-windows-aspnet.git
-          cd aws-ecs-windows-aspnet\AWSECSSample
+          git clone https://github.com/aws-samples/aws-ecs-windows-aspnet.git -c
+          
           
 
       - name: Configure AWS credentials
