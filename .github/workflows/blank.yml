@@ -17,7 +17,7 @@ jobs:
       - name: clone repo
         run:
           git clone https://github.com/aws-samples/aws-ecs-windows-aspnet.git
-          cd aws-ecs-windows-aspnet\AWSECSSample
+          
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -42,6 +42,7 @@ jobs:
           ECR_REPOSITORY: winows-images
           IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         run: |
+          cd aws-ecs-windows-aspnet\AWSECSSample
           docker build -t win-app-container .
           docker tag win-app-container:latest 975148384510.dkr.ecr.ca-central-1.amazonaws.com/win-app-container:latest
           docker push 975148384510.dkr.ecr.ca-central-1.amazonaws.com/win-app-container:latest
