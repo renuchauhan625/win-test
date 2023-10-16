@@ -3,12 +3,12 @@ name: Deploy to ECR
 on:
   workflow_dispatch:
   push:
-    branches: [testing2]
+    branches: [aws-workshop]
 
 jobs:
   build:
     name: Build and Push Image
-    runs-on: app-hosted
+    runs-on: workshop-hosted
 
     steps:
       - name: Check out code
