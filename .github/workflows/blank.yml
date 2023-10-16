@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
+      
+      - name: clone repo
         run:
           git clone https://github.com/aws-samples/aws-ecs-windows-aspnet.git
           cd aws-ecs-windows-aspnet\AWSECSSample
