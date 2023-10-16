@@ -37,18 +37,18 @@ jobs:
           ECR_REPOSITORY: winows-images
           IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         run: |
-          docker build -t sdk:bmo .
-          docker build -t 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:BMO.SDK-test2 .
-          docker push 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:BMO.SDK-test2
+          docker build -t win-app-container .
+          docker tag win-app-container:latest 975148384510.dkr.ecr.ca-central-1.amazonaws.com/win-app-container:latest
+          docker push 975148384510.dkr.ecr.ca-central-1.amazonaws.com/win-app-container:latest
 
       - name: Tag the Docker Image Locally
-        run: docker tag 975148384510.dkr.ecr.ca-central-1.amazonaws.com/winows-images:BMO.SDK-test2 sdk:bmo
+        run: docker tag 975148384510.dkr.ecr.ca-central-1.amazonaws.com/win-app-container:latest sdk1:bmo
 
       - name: Create Local Docker Image
-        run: docker build -t sdk1:bmo .
+        run: docker build -t sdk2:bmo .
 
       - name: Run Docker Container
-        run: docker run -d --name sdkbmo1 sdk1:bmo
+        run: docker run -d --name sdkbmo1 sdk2:bmo
 
       - name: List Local Docker Images
         run: docker images
